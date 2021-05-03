@@ -40,13 +40,38 @@
                 console.log('cell = ' + data[x].cell);
             }
 
-            // window.location.href = 'http://localhost:8080/cinema/payment.html?id=1&row=1&cell=2';
-            window.location.href = 'http://localhost:8080/cinema/payment.html?id=1&row=1&cell=2';
+            // todo берем из выше массив из объектов с полями row и cell - это будут
+            // те для которых нужно сделать disabled и добавить текст что занято
+
+            document.getElementById("place11").disabled = true;
 
         }).fail(function (err) {
             alert(err);
         });
     });
+
+    function goPayment() {
+
+        let chosenRow;
+        let chosenCell;
+
+        const radios = document.getElementsByName('place');
+        for (let i = 0, length = radios.length; i < length; i++) {
+            if (radios[i].checked) {
+                alert(radios[i].value);
+
+                const chosenPlaceStr = radios[i].value;
+
+                chosenRow = chosenPlaceStr.charAt(0);
+                chosenCell = chosenPlaceStr.charAt(1);
+
+                break;
+            }
+        }
+
+        window.location.href = 'http://localhost:8080/cinema/payment.html?id=1&row='+ chosenRow +'&cell=' + chosenCell;
+    }
+
 </script>
 
 <div class="container">
@@ -66,27 +91,27 @@
             <tbody>
             <tr>
                 <th>1</th>
-                <td><input type="radio" name="place" value="11"> Ряд 1, Место 1</td>
-                <td><input type="radio" name="place" value="11"> Ряд 1, Место 2</td>
-                <td><input type="radio" name="place" value="11"> Ряд 1, Место 3</td>
+                <td><input type="radio" name="place" value="11" id="place11"> Ряд 1, Место 1</td>
+                <td><input type="radio" name="place" value="12"> Ряд 1, Место 2</td>
+                <td><input type="radio" name="place" value="13"> Ряд 1, Место 3</td>
             </tr>
             <tr>
                 <th>2</th>
-                <td><input type="radio" name="place" value="11"> Ряд 2, Место 1</td>
-                <td><input type="radio" name="place" value="11"> Ряд 2, Место 2</td>
-                <td><input type="radio" name="place" value="11"> Ряд 2, Место 3</td>
+                <td><input type="radio" name="place" value="21"> Ряд 2, Место 1</td>
+                <td><input type="radio" name="place" value="22"> Ряд 2, Место 2</td>
+                <td><input type="radio" name="place" value="23"> Ряд 2, Место 3</td>
             </tr>
             <tr>
                 <th>3</th>
-                <td><input type="radio" name="place" value="11"> Ряд 3, Место 1</td>
-                <td><input type="radio" name="place" value="11"> Ряд 3, Место 2</td>
-                <td><input type="radio" name="place" value="11"> Ряд 3, Место 3</td>
+                <td><input type="radio" name="place" value="31"> Ряд 3, Место 1</td>
+                <td><input type="radio" name="place" value="32"> Ряд 3, Место 2</td>
+                <td><input type="radio" name="place" value="33"> Ряд 3, Место 3</td>
             </tr>
             </tbody>
         </table>
     </div>
     <div class="row float-right">
-        <button type="button" class="btn btn-success">Оплатить</button>
+        <button type="button" class="btn btn-success" onclick="goPayment()">Оплатить</button>
     </div>
 </div>
 </body>
