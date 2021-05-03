@@ -17,9 +17,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+<script>
+    // var url_string = "http://localhost:8080/cinema/payment.html?id=1&row=1&cell=2"; //window.location.href
+    var url_string = window.location.href
+    console.log(url_string)
+    var url = new URL(url_string);
+    var c = url.searchParams.get("row");
+    console.log(c);
+    // const el = document.getElementById('orderHeader');
+    // el.textContent = 'Вы выбрали ряд' + c + ' 1 место 1, Сумма : 500 рублей';
+    // var url = window.location.href;
+    // var c = url.searchParams.get("id");
+    // console.log(c);
+</script>
+
 <div class="container">
     <div class="row pt-3">
-        <h3>
+        <h3 id="orderHeader">
             Вы выбрали ряд 1 место 1, Сумма : 500 рублей.
         </h3>
     </div>
