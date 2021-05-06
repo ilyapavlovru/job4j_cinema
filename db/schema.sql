@@ -2,7 +2,6 @@ CREATE TABLE account
 (
     id       SERIAL PRIMARY KEY,
     username VARCHAR NOT NULL,
-    email    VARCHAR NOT NULL UNIQUE,
     phone    VARCHAR NOT NULL UNIQUE
 );
 
@@ -14,3 +13,4 @@ CREATE TABLE ticket
     cell       INT NOT NULL,
     account_id INT NOT NULL REFERENCES account
 );
+ALTER TABLE ticket ADD CONSTRAINT constraint_unique_ticket UNIQUE (session_id, row, cell);

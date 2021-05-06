@@ -7,10 +7,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Ticket {
+public class Account {
     private int id;
-    private int sessionId;
-    private int row;
-    private int cell;
-    private int accountId;
+    private String userName;
+    private String phone;
 }

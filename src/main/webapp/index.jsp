@@ -24,62 +24,43 @@
 
 <script>
     $(document).ready(function () {
-
-        <%--const el = document.getElementById('citySelector');--%>
-        <%--let curCityId = <%=can.getCityId()%>;--%>
-
         $.ajax({
             type: 'GET',
             url: 'http://localhost:8080/cinema/hall',
             dataType: 'json'
         }).done(function (data) {
-
             console.log(data)
-
             for (let x = 0; x < data.length; x++) {
                 console.log('id =' + data[x].id);
                 console.log('row = ' + data[x].row);
                 console.log('cell = ' + data[x].cell);
-
                 let a = "place" + data[x].row + data[x].cell;
                 console.log(a);
-
                 document.getElementById(a).disabled = true;
-
             }
-
-            // todo берем из выше массив из объектов с полями row и cell - это будут
-            // те для которых нужно сделать disabled и добавить текст что занято
-
-            // document.getElementById("place11").disabled = true;
-
         }).fail(function (err) {
             alert(err);
         });
     });
 
-    function goPayment() {
+    function validate() {
+        // проверка что выбрано место
+    }
 
+    function goPayment() {
         let chosenRow;
         let chosenCell;
-
         const radios = document.getElementsByName('place');
         for (let i = 0, length = radios.length; i < length; i++) {
             if (radios[i].checked) {
-                alert(radios[i].value);
-
                 const chosenPlaceStr = radios[i].value;
-
                 chosenRow = chosenPlaceStr.charAt(0);
                 chosenCell = chosenPlaceStr.charAt(1);
-
                 break;
             }
         }
-
-        window.location.href = 'http://localhost:8080/cinema/payment.html?id=1&row=' + chosenRow + '&cell=' + chosenCell;
+        window.location.href = 'http://localhost:8080/cinema/payment.jsp?session_id=1&row=' + chosenRow + '&cell=' + chosenCell;
     }
-
 </script>
 
 <div class="container">
@@ -99,9 +80,6 @@
             <tbody>
             <tr>
                 <th>1</th>
-
-                <input id="radio-2" type="radio" name="radio" value="2">
-
                 <td><div class="form_radio_btn"><input type="radio" name="place" value="11" id="place11"><label for="place11">Ряд 1, Место 1</label></div></td>
                 <td><div class="form_radio_btn"><input type="radio" name="place" value="12" id="place12"><label for="place12">Ряд 1, Место 2</label></div></td>
                 <td><div class="form_radio_btn"><input type="radio" name="place" value="13" id="place13"><label for="place13">Ряд 1, Место 3</label></div></td>

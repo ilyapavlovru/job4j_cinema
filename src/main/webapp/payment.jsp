@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Сервис - Кинотеатр</title>
 </head>
 <body>
 <!-- Optional JavaScript -->
@@ -22,13 +23,18 @@
     var url_string = window.location.href
     console.log(url_string)
     var url = new URL(url_string);
+    var chosenSessionId = url.searchParams.get("session_id");
     var chosenRow = url.searchParams.get("row");
     var chosenCell = url.searchParams.get("cell");
     console.log(chosenRow);
 
     $(document).ready(function () {
-        const el = document.getElementById('orderHeader');
-        el.textContent = 'Вы выбрали ряд ' + chosenRow + ' место ' + chosenCell + ', Сумма : 500 рублей';
+        const orderHeader = document.getElementById('orderHeader');
+        orderHeader.textContent = 'Вы выбрали ряд ' + chosenRow + ' место ' + chosenCell + ', Сумма : 500 рублей';
+        console.log('chosenSessionId = ' + chosenSessionId);
+        document.getElementById("session_id").value = chosenSessionId;
+        document.getElementById("row").value = chosenRow;
+        document.getElementById("cell").value = chosenCell;
     });
 
     // todo после нажатия на кнопку оплатить делается валидация на заполненность
@@ -37,25 +43,48 @@
     // account_id созданного пользователя
     // Также если произошло нарушение уникальности по трем полям, то выдаем сообщение пользвателю
 
+
+
+    function validate() {
+
+        const name = $('#username').val();
+        if (name === "") {
+            alert("Укажите ваше имя");
+            return false;
+        }
+        const phone = $('#phone').val();
+        if (phone === "") {
+            alert("Укажите ваш телефон");
+            return false;
+        }
+    }
+
 </script>
 
 <div class="container">
+
+    <h2 id="myHeader"></h2>
+
     <div class="row pt-3">
         <h3 id="orderHeader">
             Вы выбрали ряд 1 место 1, Сумма : 500 рублей.
         </h3>
     </div>
+
     <div class="row">
-        <form>
+        <form action="<%=request.getContextPath()%>/reg.do" method="post">
             <div class="form-group">
-                <label for="username">ФИО</label>
-                <input type="text" class="form-control" id="username" placeholder="ФИО">
+                <label for="username">Имя</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Имя">
             </div>
             <div class="form-group">
                 <label for="phone">Номер телефона</label>
-                <input type="text" class="form-control" id="phone" placeholder="Номер телефона">
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="Номер телефона">
             </div>
-            <button type="button" class="btn btn-success">Оплатить</button>
+            <input type="hidden" id="session_id" name="session_id"/>
+            <input type="hidden" id="row" name="row"/>
+            <input type="hidden" id="cell" name="cell"/>
+            <button type="submit" class="btn btn-success" onclick="return validate()">Оплатить</button>
         </form>
     </div>
 </div>

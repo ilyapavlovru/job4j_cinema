@@ -8,8 +8,16 @@
     <servlet-name>HallServlet</servlet-name>
     <servlet-class>ru.job4j.cinema.servlet.HallServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>RegServlet</servlet-name>
+    <servlet-class>ru.job4j.cinema.servlet.RegServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>HallServlet</servlet-name>
     <url-pattern>/hall</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RegServlet</servlet-name>
+    <url-pattern>/reg.do</url-pattern>
   </servlet-mapping>
 </web-app>
