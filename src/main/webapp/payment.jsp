@@ -72,7 +72,7 @@
     </div>
 
     <div class="row">
-        <form action="<%=request.getContextPath()%>/reg.do" method="post">
+        <form action="<%=request.getContextPath()%>/ticket.do" method="post">
             <div class="form-group">
                 <label for="username">Имя</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="Имя">

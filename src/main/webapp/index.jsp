@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <meta http-equiv="refresh" content="30">
+
     <link type="text/css" rel="stylesheet" href="styles.css"/>
 
     <!-- Bootstrap CSS -->

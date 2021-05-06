@@ -9,15 +9,15 @@
     <servlet-class>ru.job4j.cinema.servlet.HallServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>RegServlet</servlet-name>
-    <servlet-class>ru.job4j.cinema.servlet.RegServlet</servlet-class>
+    <servlet-name>TicketServlet</servlet-name>
+    <servlet-class>ru.job4j.cinema.servlet.TicketServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>HallServlet</servlet-name>
     <url-pattern>/hall</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>RegServlet</servlet-name>
-    <url-pattern>/reg.do</url-pattern>
+    <servlet-name>TicketServlet</servlet-name>
+    <url-pattern>/ticket.do</url-pattern>
   </servlet-mapping>
 </web-app>
