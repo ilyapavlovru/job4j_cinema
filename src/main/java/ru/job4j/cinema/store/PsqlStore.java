@@ -68,7 +68,7 @@ public class PsqlStore implements Store {
                 }
             }
         } catch (Exception e) {
-            logger.warn("findAllTickets error", e);
+            logger.warn("find all tickets error", e);
         }
         return tickets;
     }
@@ -87,7 +87,7 @@ public class PsqlStore implements Store {
                 }
             }
         } catch (Exception e) {
-            logger.warn("find account by email error", e);
+            logger.warn("find account by phone error", e);
         }
         return account;
     }

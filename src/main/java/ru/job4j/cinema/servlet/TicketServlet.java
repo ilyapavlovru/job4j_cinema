@@ -13,16 +13,12 @@ import java.io.IOException;
 public class TicketServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String name = req.getParameter("username");
         String phone = req.getParameter("phone");
-
         int sessionId = Integer.parseInt(req.getParameter("session_id"));
         int row = Integer.parseInt(req.getParameter("row"));
         int cell = Integer.parseInt(req.getParameter("cell"));
-
         Account existingAccount = PsqlStore.instOf().findAccountByPhone(phone);
-        // если пользователя не существует еще (т.е. в базе не нашли по номеру телефона), то создаем его
         if (existingAccount == null) {
             req.setCharacterEncoding("UTF-8");
             Account savedAccount = PsqlStore.instOf().saveAccount(new Account(0, name, phone));

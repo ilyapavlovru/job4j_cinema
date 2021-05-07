@@ -19,34 +19,21 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <script>
-    // var url_string = "http://localhost:8080/cinema/payment.html?id=1&row=1&cell=2"; //window.location.href
-    var url_string = window.location.href
-    console.log(url_string)
-    var url = new URL(url_string);
-    var chosenSessionId = url.searchParams.get("session_id");
-    var chosenRow = url.searchParams.get("row");
-    var chosenCell = url.searchParams.get("cell");
-    console.log(chosenRow);
+    const url_string = window.location.href;
+    const url = new URL(url_string);
+    const chosenSessionId = url.searchParams.get("session_id");
+    const chosenRow = url.searchParams.get("row");
+    const chosenCell = url.searchParams.get("cell");
 
     $(document).ready(function () {
         const orderHeader = document.getElementById('orderHeader');
         orderHeader.textContent = 'Вы выбрали ряд ' + chosenRow + ' место ' + chosenCell + ', Сумма : 500 рублей';
-        console.log('chosenSessionId = ' + chosenSessionId);
         document.getElementById("session_id").value = chosenSessionId;
         document.getElementById("row").value = chosenRow;
         document.getElementById("cell").value = chosenCell;
     });
 
-    // todo после нажатия на кнопку оплатить делается валидация на заполненность
-    //  полей и делается запрос в базу данных на сохранения пользователя с фио и номером телефона
-    // а также создается запись в таблице ticket. указывается сессияид, row , cell и только ранее созданный
-    // account_id созданного пользователя
-    // Также если произошло нарушение уникальности по трем полям, то выдаем сообщение пользвателю
-
-
-
     function validate() {
-
         const name = $('#username').val();
         if (name === "") {
             alert("Укажите ваше имя");
@@ -58,19 +45,12 @@
             return false;
         }
     }
-
 </script>
 
 <div class="container">
-
-    <h2 id="myHeader"></h2>
-
     <div class="row pt-3">
-        <h3 id="orderHeader">
-            Вы выбрали ряд 1 место 1, Сумма : 500 рублей.
-        </h3>
+        <h3 id="orderHeader"></h3>
     </div>
-
     <div class="row">
         <form action="<%=request.getContextPath()%>/ticket.do" method="post">
             <div class="form-group">

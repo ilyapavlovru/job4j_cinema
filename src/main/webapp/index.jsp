@@ -5,7 +5,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <meta http-equiv="refresh" content="30">
 
     <link type="text/css" rel="stylesheet" href="styles.css"/>
@@ -31,13 +30,8 @@
             url: 'http://localhost:8080/cinema/hall',
             dataType: 'json'
         }).done(function (data) {
-            console.log(data)
             for (let x = 0; x < data.length; x++) {
-                console.log('id =' + data[x].id);
-                console.log('row = ' + data[x].row);
-                console.log('cell = ' + data[x].cell);
                 let a = "place" + data[x].row + data[x].cell;
-                console.log(a);
                 document.getElementById(a).disabled = true;
             }
         }).fail(function (err) {
@@ -45,21 +39,23 @@
         });
     });
 
-    function validate() {
-        // проверка что выбрано место
-    }
-
     function goPayment() {
         let chosenRow;
         let chosenCell;
+        let checked = false;
         const radios = document.getElementsByName('place');
         for (let i = 0, length = radios.length; i < length; i++) {
             if (radios[i].checked) {
                 const chosenPlaceStr = radios[i].value;
                 chosenRow = chosenPlaceStr.charAt(0);
                 chosenCell = chosenPlaceStr.charAt(1);
+                checked = true;
                 break;
             }
+        }
+        if (!checked) {
+            alert("Необходимо выбрать место");
+            return false;
         }
         window.location.href = 'http://localhost:8080/cinema/payment.jsp?session_id=1&row=' + chosenRow + '&cell=' + chosenCell;
     }
